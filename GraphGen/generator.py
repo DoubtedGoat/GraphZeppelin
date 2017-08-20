@@ -2,6 +2,8 @@ import networkx as nx;
 import random;
 import os;
 import errno;
+
+#https://github.com/hagberg/planarity
 import planarity;
 
 class Generator:
