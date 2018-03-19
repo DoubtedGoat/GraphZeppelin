@@ -20,10 +20,11 @@ class Generator:
         graph = nx.compose_all(subgraphs);
         while not planarity.is_planar(graph):
             k_subgraph=planarity.kuratowski_subgraph(graph);
-            graph.remove_edge(next(k_subgraph.edges_iter));
+            graph.remove_edge(*next(iter(k_subgraph.edges)));
         self.export(graph, 'composition');
         for index, subgraph in enumerate(subgraphs):
             self.export(subgraph, str(index));
+        return graph;
 
     def generateCycle(self, length):
         namelist = range(20);
