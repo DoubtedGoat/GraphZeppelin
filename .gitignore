@@ -3,3 +3,5 @@ desert.tmx
 generated.tmx
 newmap.tmx
 .spyproject
+
+*.pyc
