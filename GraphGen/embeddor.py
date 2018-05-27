@@ -17,7 +17,7 @@ class Embeddor:
 
         # Our starting node = edge are Old already
         graph.nodes[t]['old'] = True;
-        graph.nodes[t]['old'] = True;
+        graph.nodes[s]['old'] = True;
         graph.add_edge(t, s, key=0, old=True);
         stack = [];
         stack.append(t);
@@ -27,7 +27,7 @@ class Embeddor:
             print "Current Stack:";
             print stack;
             node = stack.pop();
-            path = self.pathfinder(graph, start_node);
+            path = self.pathfinder(graph, node);
             # If there's no path we apply the next number and move down the node_stack
             #   Otherwise we push all nodes in the current path onto the stack
             if path == None:
@@ -58,6 +58,7 @@ class Embeddor:
                 if self.is_ancestor(graph, edge[0], edge[1]):
                     selected_edge = edge;
         if selected_edge != -1:
+            print "Pathfinder A";
             graph.add_edge(selected_edge[0], selected_edge[1], key=0, old=True);
             return [selected_edge];
 
@@ -66,6 +67,7 @@ class Embeddor:
             if (not graph.get_edge_data(*edge)['old']) and graph.get_edge_data(*edge)['tree_edge']:
                 selected_edge = edge;
         if selected_edge != -1:
+            print "Pathfinder B";
             graph.add_edge(selected_edge[0], selected_edge[1], key=0, old=True);
             path = [selected_edge];
             while graph.nodes[selected_edge[1]]['old'] == False:
@@ -93,6 +95,7 @@ class Embeddor:
                 if self.is_ancestor(graph, edge[1], edge[0]):
                     selected_edge = edge;
         if selected_edge != -1:
+            print "Pathfinder C";
             graph.add_edge(selected_edge[0], selected_edge[1], key=0, old=True);
             path = [selected_edge];
             while graph.nodes[selected_edge[1]]['old'] == False:

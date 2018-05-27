@@ -12,3 +12,5 @@ You need a bunch of libraries and Cython
 
 Doesn't play super well with normal Windows, use the Linux subsystem
 Good luck.
+
+Python 2.7
